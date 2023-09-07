@@ -16,10 +16,10 @@ export const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp />
             },
-            {
-                path: '/todos',
-                element: <PrivateRoutes><Todos /></PrivateRoutes>
-            }
+            // {
+            //     path: '/todos',
+            //     element: <PrivateRoutes><Todos /></PrivateRoutes>
+            // }
         ]
     }
 
