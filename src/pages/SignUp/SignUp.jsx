@@ -6,7 +6,7 @@ import Loader from "../../loader/Loader";
 
 const SignUp = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { createUser, profileUpdate, loading } = useContext(AuthContext);
+    const { createUser, profileUpdate, loading, googleSignIn } = useContext(AuthContext);
 
     const handleSignUp = (data) => {
         //image upload to imagebb server
@@ -38,6 +38,12 @@ const SignUp = () => {
                         .catch(e => console.log(e))
                 }
             })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => { })
+            .catch(e => console.log(e))
     }
 
     if (loading) {
@@ -74,17 +80,14 @@ const SignUp = () => {
                                 <span className="font-medium">Password</span>
                             </label>
                             <input {...register("password", { required: true })} type="text" placeholder="password" className="p-2 border-2 rounded-lg focus:outline-none" />
-                            <label className="pt-2">
-                                <a href="#" className="text-xs">Forgot password?</a>
-                            </label>
                         </div>
                         <div className="mt-3">
                             <input type='submit' value='Login' className="p-2 text-white bg-green-600 w-full rounded-xl cursor-pointer" />
                         </div>
-                        <p>Are you new user? <Link className='text-emerald-600' to='/signup'>Please Signup</Link></p>
+                        <p>Already have an account? <Link className='text-emerald-600' to='/'>Please Login</Link></p>
 
                         <div className="mt-3">
-                            <button className="p-2 text-white bg-green-600 w-full rounded-xl ">Signin with Google</button>
+                            <button onClick={handleGoogleSignIn} className="p-2 text-white bg-green-600 w-full rounded-xl ">Signin with Google</button>
                         </div>
                     </form>
                 </div>

@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
-    const {login,loading}= useContext(AuthContext);
+    const { login, loading, googleSignIn } = useContext(AuthContext);
 
     const handleLogin = (data) => {
         console.log(data);
@@ -14,6 +14,12 @@ const Login = () => {
             .then(result => {
                 // navigate('/todos');
             })
+    }
+    //google signup
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => { })
+            .catch(e => console.log(e))
     }
     if (loading) {
         return <Loader />
@@ -47,7 +53,7 @@ const Login = () => {
                         <p>Are you new user? <Link className='text-emerald-600' to='/signup'>Please Signup</Link></p>
 
                         <div className="mt-3">
-                            <button className="p-2 text-white bg-green-600 w-full rounded-xl ">Signin with Google</button>
+                            <button onClick={handleGoogleSignIn} className="p-2 text-white bg-green-600 w-full rounded-xl ">Signin with Google</button>
                         </div>
                     </form>
                 </div>
