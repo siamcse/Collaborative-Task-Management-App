@@ -1,20 +1,23 @@
 import { useForm } from "react-hook-form";
 import Loader from "../../loader/Loader";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
+    const {login,loading}= useContext(AuthContext);
 
     const handleLogin = (data) => {
         console.log(data);
-        // login(data.email, data.password)
-        //     .then(result => {
-        //         navigate('/todos');
-        //     })
+        login(data.email, data.password)
+            .then(result => {
+                // navigate('/todos');
+            })
     }
-    // if (loading) {
-    //     return <Loader />
-    // }
+    if (loading) {
+        return <Loader />
+    }
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
             <div>
