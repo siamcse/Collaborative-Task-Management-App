@@ -14,14 +14,14 @@ const Navbar = () => {
                 <div className='flex gap-3 ml-5'>
                     <Link className='text-lg text-gray-500' to='/'>Home</Link>
                     <Link className='text-lg text-gray-500' to='/todos'>Todos</Link>
-                    <Link className='text-lg text-gray-500' to='/'>About</Link>
                 </div>
                 <div className=''>
                     {
                         user?.email ?
                             <>
-
-                                <button onClick={handleLogout} className='border-2 rounded-full text-white mr-4 my-1'><img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" /></button>
+                                <button onClick={handleLogout} className='border-2 rounded-full text-white mr-4 my-1'>
+                                    <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
+                                </button>
                             </>
                             :
                             <Link to='/' className='border-2 p-2 rounded-md bg-emerald-600 text-white'>Login</Link>

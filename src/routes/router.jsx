@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Todos from "../pages/Todos/Todos";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/todos',
-                element: <Todos />
+                element: <PrivateRoutes><Todos /></PrivateRoutes>
             }
         ]
     }
