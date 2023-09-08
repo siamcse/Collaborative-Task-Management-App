@@ -1,23 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useForm } from 'react-hook-form';
 import TodoList from './TodoList';
+import { format } from 'date-fns';
+import TodosForm from './TodosForm';
+import Modal from '../../components/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/fontawesome-free-solid';
 
 const Todos = () => {
-    const {user} = useContext(AuthContext);
-    const {handleSubmit,register} = useForm();
+    const { user } = useContext(AuthContext);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleAddTodo = (data)=>{
-        console.log(data);
-    }
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+    const date = format(new Date(), 'PPPP');
+    console.log(date);
+
+
     return (
         <div className='container mx-auto'>
             <div className='mt-16'>
+                <p className='text-center font-medium'>{date}</p>
                 <h1 className='text-3xl md:text-5xl text-center'>Welcome {user?.displayName}!</h1>
-                <form onSubmit={handleSubmit(handleAddTodo)} className='flex flex-col sm:flex-row items-center justify-center mt-10 p-2 md:p-0 gap-4'>
-                    <input {...register("todo", { required: true })} placeholder="Type here" className="p-2 rounded-lg focus:outline-none border-2 w-full max-w-xs" type="text" />
-                    <input type="submit" value='Add' className='p-2 rounded-lg  text-white bg-emerald-600' />
-                </form>
+                <div className='flex justify-center mt-4'>
+                    <button onClick={openModal} className="bg-gray-500 text-white px-4 py-2 rounded">
+                        <FontAwesomeIcon icon={faPlus} className='mr-2' />
+                        Create Task
+                    </button>
+                    <Modal isOpen={isModalOpen} onClose={closeModal}>
+                        <TodosForm/>
+                    </Modal>
+                </div>
+                
             </div>
             <TodoList />
         </div>
