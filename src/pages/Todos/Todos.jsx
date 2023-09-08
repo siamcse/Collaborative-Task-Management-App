@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
-import { useForm } from 'react-hook-form';
 import TodoList from './TodoList';
 import { format } from 'date-fns';
 import TodosForm from './TodosForm';
@@ -22,8 +21,6 @@ const Todos = () => {
 
 
     const date = format(new Date(), 'PPPP');
-    console.log(date);
-
 
     return (
         <div className='container mx-auto'>
@@ -36,7 +33,7 @@ const Todos = () => {
                         Create Task
                     </button>
                     <Modal isOpen={isModalOpen} onClose={closeModal}>
-                        <TodosForm/>
+                        <TodosForm onClose={closeModal}/>
                     </Modal>
                 </div>
                 
