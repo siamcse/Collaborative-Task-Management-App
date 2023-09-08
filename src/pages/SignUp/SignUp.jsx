@@ -50,7 +50,7 @@ const SignUp = () => {
         return <Loader />
     }
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="mt-10 flex flex-col items-center justify-center">
             <div>
                 <div>
                     <h1 className="text-center text-4xl p-2 font-bold">SignUp</h1>

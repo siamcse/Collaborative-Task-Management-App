@@ -10,11 +10,13 @@ const Navbar = () => {
     }
     return (
         <div className='container mx-auto mt-5'>
-            <div className='bg-green-600 rounded-lg'>
-                <div className=''>
-
+            <div className='bg-gray-100 shadow-xl rounded-lg flex justify-between items-center'>
+                <div className='flex gap-3 ml-5'>
+                    <Link className='text-lg text-gray-500' to='/'>Home</Link>
+                    <Link className='text-lg text-gray-500' to='/todos'>Todos</Link>
+                    <Link className='text-lg text-gray-500' to='/'>About</Link>
                 </div>
-                <div className='flex justify-end'>
+                <div className=''>
                     {
                         user?.email ?
                             <>
