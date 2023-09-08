@@ -10,6 +10,7 @@ import { faPlus } from '@fortawesome/fontawesome-free-solid';
 const Todos = () => {
     const { user } = useContext(AuthContext);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [refresh, setRefresh] = useState(false);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -33,12 +34,12 @@ const Todos = () => {
                         Create Task
                     </button>
                     <Modal isOpen={isModalOpen} onClose={closeModal}>
-                        <TodosForm onClose={closeModal}/>
+                        <TodosForm refresh={refresh} setRefresh={setRefresh} onClose={closeModal} />
                     </Modal>
                 </div>
-                
+
             </div>
-            <TodoList />
+            <TodoList refresh={refresh} setRefresh={setRefresh} />
         </div>
     );
 };

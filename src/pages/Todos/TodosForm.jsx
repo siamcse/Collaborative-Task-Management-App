@@ -2,12 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { addToDb } from '../../utilities/fakeDb';
 
-const TodosForm = ({ onClose }) => {
+const TodosForm = ({ onClose, refresh, setRefresh }) => {
     const { handleSubmit, register } = useForm();
 
     const handleAddTodo = (data) => {
         console.log(data);
         addToDb(data);
+        setRefresh(!refresh);
         onClose();
     }
     return (

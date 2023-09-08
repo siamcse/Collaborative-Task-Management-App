@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Loader from "../../loader/Loader";
 
 const SignUp = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { createUser, profileUpdate, loading, googleSignIn } = useContext(AuthContext);
+    const { user, createUser, profileUpdate, loading, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user?.email) {
+            navigate('/todos');
+        }
+    }, [user, navigate])
 
     const handleSignUp = (data) => {
         //image upload to imagebb server
@@ -32,7 +39,7 @@ const SignUp = () => {
                                         image: imgUrl
                                     }
                                     // saveUserDB(currentUser);
-                                    // navigate('/todos')
+                                    navigate('/todos')
                                 })
                         })
                         .catch(e => console.log(e))

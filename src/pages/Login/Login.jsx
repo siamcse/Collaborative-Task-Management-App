@@ -1,24 +1,33 @@
 import { useForm } from "react-hook-form";
 import Loader from "../../loader/Loader";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
-    const { login, loading, googleSignIn } = useContext(AuthContext);
+    const { user, login, loading, googleSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user?.email) {
+            navigate('/todos');
+        }
+    }, [user, navigate])
 
     const handleLogin = (data) => {
         console.log(data);
         login(data.email, data.password)
             .then(result => {
-                // navigate('/todos');
+                navigate('/todos');
             })
     }
     //google signup
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then(result => { })
+            .then(result => {
+                navigate('/todos');
+            })
             .catch(e => console.log(e))
     }
     if (loading) {

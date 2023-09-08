@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getstoredTodos } from '../../utilities/fakeDb';
 
-const TodoList = () => {
+const TodoList = ({ refresh }) => {
     const [todos, setTodos] = useState();
 
     useEffect(() => {
         setTodos(getstoredTodos());
-    }, [])
+    }, [refresh])
     console.log(todos);
     return (
         <div className='flex justify-start mt-10'>
